@@ -1,0 +1,18 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.head h1{
+    font-size: 5rem;
+    margin-top: 50px;
+}
+.quiz-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
