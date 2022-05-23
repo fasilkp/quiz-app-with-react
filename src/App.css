@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  color: #000540;
 }
 .background {
   background: url('../assets/image/vackground-0F2pC8_DwvM-unsplash.jpg');
@@ -15,3 +16,4 @@ body {
   left: 0;
   z-index: -10;
 }
+
