@@ -53,9 +53,9 @@
     z-index: 5;
 }
 .options div{
-    background-color: #B9BDEA;
-    width: 90%;
-    height: 100%;
+    background-color: rgba(185, 189, 234, 0.75);
+    width: 98%;
+    height: 95%;
     display: flex;
     justify-content: center;
     border-radius: 80px;
@@ -63,14 +63,32 @@
     align-items: center;
 }
 .options div:hover{
-    background-color: #7e82b6;
+    background-color: #7e82b68a;
+}
+.options div input{
+    opacity: 0%;
+}
+.options .selectedOption,.options .selectedOption:hover{
+    background-color: rgba(0, 5, 64, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.896);
+    color: White;
+}
+.options .selectedOptionWrong,.options .selectedOptionWrong:hover{
+    background-color: rgba(177, 47, 47, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.896);
+    color: White;
+}
+.options .selectedOptionCorrect,.options .selectedOptionCorrect:hover{
+    background-color: rgba(28, 130, 28, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.896);
+    color: White;
 }
 .btn-container{
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
-    position: absolute;
-    bottom: 70px;
+    padding-right: 200px;
+    margin-top:150px;
   }
   .btn-container .btn{
     width: 200px;
@@ -79,7 +97,8 @@
     color: white;
     font-size: 1.8rem;
     font-weight: 650;
-    margin-right: 200px;
+    margin-right: 20px;
+    
     border-radius: 50px;
     z-index: 5;
   }
