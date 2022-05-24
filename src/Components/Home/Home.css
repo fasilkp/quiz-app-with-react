@@ -61,6 +61,7 @@
     border-radius: 80px;
     transition: .2s;
     align-items: center;
+    transition:.2s;
 }
 .options div:hover{
     background-color: #7e82b68a;
@@ -74,20 +75,20 @@
     color: White;
 }
 .options .selectedOptionWrong,.options .selectedOptionWrong:hover{
-    background-color: rgba(177, 47, 47, 0.9);
+    background-color: rgba(133, 18, 18, 0.819);
     border: 1px solid rgba(255, 255, 255, 0.896);
     color: White;
 }
 .options .selectedOptionCorrect,.options .selectedOptionCorrect:hover{
-    background-color: rgba(28, 130, 28, 0.9);
+    background-color: rgba(0, 97, 0, 0.818);
     border: 1px solid rgba(255, 255, 255, 0.896);
     color: White;
 }
 .btn-container{
     width: 100%;
     display: flex;
-    flex-direction: row-reverse;
-    padding-right: 200px;
+    flex-direction: row;
+    justify-content: center;
     margin-top:150px;
   }
   .btn-container .btn{
@@ -97,10 +98,12 @@
     color: white;
     font-size: 1.8rem;
     font-weight: 650;
-    margin-right: 20px;
-    
     border-radius: 50px;
+    margin: 0px 20px 0px 20px;
     z-index: 5;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
   .btn-container .btn:hover{
     background-color: white;
@@ -121,4 +124,8 @@
     align-items: flex-end;
     font-size: 1.4rem;
     font-weight: 650;
+  }
+i{
+      color: black;
+      font-size: 100px;
   }

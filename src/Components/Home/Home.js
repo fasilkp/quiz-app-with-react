@@ -1,7 +1,15 @@
 import React, {useEffect, useState} from 'react'
+import {useSound} from 'use-sound'
+import clickSound1 from './click2.wav'
+import clickSound2 from './click3.wav'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight, faQuestion } from '@fortawesome/free-solid-svg-icons'
 import './Home.css'
 import {ClipLoader} from 'react-spinners'
 import axios from 'axios'
+import AOS from "aos";
+import "aos/dist/aos.css";
+import AlertBox from '../AlertBox/AlertBox'
 function Home() {
     const [selectedOption, setSelectedOption]=useState({value:"", index:""})
     const [options, setOptions]=useState([])
@@ -11,8 +19,14 @@ function Home() {
     const [load, setLoad]=useState(true)
     const [answerChecked, setAnswerChecked]=useState(false)
     const [questionNo, setQuestionNo]=useState(0)
+    const [showAlert, setShowAlert]=useState(false)
     const [score, setScore]=useState(0)
+    const [check, setCheck]=useState(0);
+    const [play1] = useSound(clickSound1);
+    const [play2] = useSound(clickSound2);
     useEffect(()=>{
+        AOS.init();
+        AOS.refresh();
         axios.get('https://opentdb.com/api.php?amount=10&category=21&type=multiple')
             .then(function (response) {
                 const result=response.data.results;
@@ -30,6 +44,7 @@ function Home() {
     },[])
     const onCheck=()=>{
         setAnswerChecked(true)
+        play1();
         if(questions[questionNo].correct_answer==selectedOption.value){
             setScore(score+1)
             setStyle({...optionStyle, ["option"+options.indexOf(questions[questionNo].correct_answer)]:"selectedOptionCorrect"})
@@ -43,8 +58,10 @@ function Home() {
        
     }
     const onNext=()=>{
+        play1();
         if(questionNo>=9){
-            alert("Game over! Your Score : "+score)
+            play2();
+            setShowAlert(true)
         }
         else{
             setQuestionNo(questionNo+1)
@@ -62,20 +79,21 @@ function Home() {
     }
   return (
       <div className="home">
-           <div className="head">
+           <div className="head" data-aos="zoom-in-down" data-aos-duration="500">
                <h1>Quiz Time!</h1>
-           </div>
-           <div className="quiz-body">
+           </div> 
+           <div className="quiz-body" data-aos="zoom-in-down" data-aos-duration="500">
                <div className="question-no"><h4>Question {questionNo+1}</h4></div>
                <div className="question">{questions?.[questionNo]?.question ? questions[questionNo].question : null}</div>
                <ClipLoader color="darkblue" loading={load} size={50} />
                 <div className="answer-container">
                     {
                        options && options.map((item, index)=>{
-                            return <label className="options"  key={index}>
+                            return <label className="options"  key={index} data-aos="flip-up" data-aos-duration="1500">
                                 <div className="option">   
                                 <div className={style['option'+index]}
                                 onClick={(e)=>{ 
+                                    play1();
                                     setSelectedOption({value:item, index:index})
                                     if(!answerChecked){
                                         setStyle({...optionStyle, ["option"+index]:"selectedOption"}) }}
@@ -89,8 +107,8 @@ function Home() {
                 </div>
            </div>
            <div className="btn-container">
-               <button className="btn" onClick={onNext} disabled={!answerChecked}>Next</button>
-               <button className="btn" onClick={onCheck} disabled={selectedOption.value=="" || answerChecked}>Check</button>
+               <button className="btn" onClick={onCheck} disabled={selectedOption.value=="" || answerChecked}>Check <FontAwesomeIcon icon={faQuestion}/></button>
+               <button className="btn" onClick={onNext} disabled={!answerChecked}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
            </div>
            <div className="score-section">
                <div className="score-container">
@@ -98,6 +116,7 @@ function Home() {
                    <div className="q-no">Question : {questionNo+1}/10</div>
                </div>
            </div>
+           {showAlert && <AlertBox score={score}/>}
       </div>
   )
 }
