@@ -27,7 +27,7 @@ function Home() {
     useEffect(()=>{
         AOS.init();
         AOS.refresh();
-        axios.get('https://opentdb.com/api.php?amount=10&category=21&type=multiple')
+        axios.get('https://opentdb.com/api.php?amount=10&category=9&type=multiple')
             .then(function (response) {
                 const result=response.data.results;
                 setQuestions(result)
@@ -59,7 +59,7 @@ function Home() {
     }
     const onNext=()=>{
         play1();
-        if(questionNo>=0){
+        if(questionNo>=9){
             play2();
             setShowAlert(true)
         }
