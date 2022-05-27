@@ -8,25 +8,36 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.181);
+    z-index: 10;
 }
 .alert-box-body{
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color:white;
     width: 50%;
     height: 60vh;
     border-radius: 30px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     box-shadow: 0px 0px 100px -50px grey;
     animation: anime .3s;
+    overflow: hidden;
 }
 .alertIcon{
     animation: animeOpacity .2s;
+    border-radius: 60px;
+    width: 120px;
+    height: 120px;
+    color: white;
+    background-color: #000540;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 100px 50px #bdc1ec;
 }
 .alertIcon .icon{
-    font-size:10rem;
+    font-size: 3.7rem;
 }
 .quiz-score{
     display: flex;
@@ -36,11 +47,15 @@
     animation: animeOpacity .2s;
 }
 .quiz-score h1{
-    font-size:5rem;
+    font-size:2.2rem;
 }
 .quiz-score h2{
-    padding-top:40px;
+    padding-top: 0px;
+    font-size: .9rem;
+    padding-bottom: 20px;
+    opacity: 80%;
 }
+
 .play-again{
     width: 100%;  
     display:flex;
@@ -49,8 +64,8 @@
 }
 .play-again-btn{
     width: 50%;
-    height: 100px;
-    font-size:1.8rem;
+    height: 50px;
+    font-size:.8rem;
     border: none;
     color: white;
     font-weight:550;
@@ -82,4 +97,48 @@
     to {
        opacity: 100%;
     }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .alert-box-body{
+        width: 83%;
+        height: 40vh;
+        border-radius: 20px;
+        padding-top:20px;
+        justify-content:space-around;
+    }
+    .alertIcon{
+        border-radius: 60px;
+        width: 100px;
+        height: 100px;
+    }
+    .alertIcon .icon{
+        font-size:2.7rem;
+    }
+    .quiz-score h1{
+        font-size:2.3rem;
+    }
+    .quiz-score h2{
+        font-size:1.3rem;
+    }
+    .play-again-btn{
+        width: 75%;
+        height: 70px;
+        font-size:1.2rem;
+        border: none;
+        color: white;
+        font-weight:550;
+        background-color:#000540;
+        border-radius: 40px;
+    
+    }
+    @keyframes anime {
+        from {
+            opacity: 0%;
+        }
+      
+        to {
+            opacity: 100%;
+        }
+      }
   }

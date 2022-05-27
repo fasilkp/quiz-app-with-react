@@ -18,6 +18,7 @@ function AlertBox(props) {
                 onClick={() => window.location.reload(false)}
                 >Play Again</button>
             </div>
+            <div className="bg-half"></div>
         </div>
     </div>
   )

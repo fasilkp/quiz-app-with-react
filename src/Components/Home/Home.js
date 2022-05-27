@@ -11,7 +11,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import AlertBox from '../AlertBox/AlertBox'
 function Home() {
-    const [selectedOption, setSelectedOption]=useState({value:"", index:""})
+    const [selectedOption, setSelectedOption]=useState({value:null, index:""})
     const [options, setOptions]=useState([])
     const optionStyle={ option1:"", option2:"", option3:"", option4:"" }
     const [style, setStyle]=useState(optionStyle)
@@ -59,7 +59,7 @@ function Home() {
     }
     const onNext=()=>{
         play1();
-        if(questionNo>=9){
+        if(questionNo>=0){
             play2();
             setShowAlert(true)
         }
@@ -72,9 +72,10 @@ function Home() {
             arr[3]=temp;
             setOptions([...arr])
             setStyle({...optionStyle});
-            setSelectedOption({value:"", index:""})
+            setSelectedOption({value:null, index:""})
             setAnswerChecked(false)
         }
+
 
     }
   return (
@@ -107,8 +108,10 @@ function Home() {
                 </div>
            </div>
            <div className="btn-container">
-               <button className="btn" onClick={onCheck} disabled={selectedOption.value=="" || answerChecked}>Check <FontAwesomeIcon icon={faQuestion}/></button>
-               <button className="btn" onClick={onNext} disabled={!answerChecked}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
+               {
+                   answerChecked ? <button className="btn" onClick={onNext}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
+                   :               <button className="btn" onClick={onCheck} disabled={selectedOption.value===null}>Check <FontAwesomeIcon icon={faQuestion}/></button>
+               }
            </div>
            <div className="score-section">
                <div className="score-container">
