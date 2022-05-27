@@ -106,13 +106,14 @@ function Home() {
                         })
                     }
                 </div>
-           </div>
-           <div className="btn-container">
+                <div className="btn-container">
                {
                    answerChecked ? <button className="btn" onClick={onNext}>Next <FontAwesomeIcon icon={faArrowRight} /></button>
                    :               <button className="btn" onClick={onCheck} disabled={selectedOption.value===null}>Check <FontAwesomeIcon icon={faQuestion}/></button>
                }
            </div>
+           </div>
+           
            <div className="score-section">
                <div className="score-container">
                    <div className="score">Score : {score}/10</div>
