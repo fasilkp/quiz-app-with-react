@@ -10,6 +10,7 @@ import axios from 'axios'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import AlertBox from '../AlertBox/AlertBox'
+import he from 'he'
 function Home() {
     const [selectedOption, setSelectedOption]=useState({value:null, index:""})
     const [options, setOptions]=useState([])
@@ -85,7 +86,7 @@ function Home() {
            </div> 
            <div className="quiz-body" data-aos="zoom-in-down" data-aos-duration="500">
                <div className="question-no"><h4>Question {questionNo+1}</h4></div>
-               <div className="question">{questions?.[questionNo]?.question ? questions[questionNo].question : null}</div>
+               <div className="question">{questions?.[questionNo]?.question ? he.decode(questions[questionNo].question) : null}</div>
                <ClipLoader color="darkblue" loading={load} size={50} />
                 <div className="answer-container">
                     {
@@ -100,7 +101,7 @@ function Home() {
                                         setStyle({...optionStyle, ["option"+index]:"selectedOption"}) }}
                                     }>
                                     
-                                    {index+1+". "+item}</div>
+                                    {index+1+". "+he.decode(item)}</div>
                                 </div>
                             </label>
                         })
